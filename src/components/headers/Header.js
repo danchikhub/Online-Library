@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './header.css';
 const Header = () => {
     
@@ -16,7 +16,7 @@ const Header = () => {
                         <nav className='nav'>
                             <ul className='nav-list'>
                                 <li className='nav-list_item'>
-                                    <Link to='/wishlist' className='nav-list_link'>Wish list</Link>
+                                    <NavLink activeClassName="selected"  to='/wishlist' className='nav-list_link'>Wish list</NavLink>
                                 </li>
                             </ul>
                         </nav>

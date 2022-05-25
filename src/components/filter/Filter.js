@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CustomSelect from "../custom-select/CustomSelect";
 import { CATEGORY } from "../../utils/consts";
-import { removeDuplicates } from "../../utils/funcs";
 import './filter.css'
 const Filter = ({ items, setItems }) => {
     const authorsArray = items.map(item => item.book_author)
@@ -12,10 +11,10 @@ const Filter = ({ items, setItems }) => {
     items.forEach((item) => {
         total += item.book_count
     })
-    const sorted = items.sort((a,b) => {
-        if(a.book_name > b.book_name) return 1;
-        if(a.book_name < b.book_name) return -1;
-        if(a.book_name == b.book_name) return 0;
+    const sorted = items.sort((a, b) => {
+        if (a.book_name > b.book_name) return 1;
+        if (a.book_name < b.book_name) return -1;
+        if (a.book_name == b.book_name) return 0;
     })
     const [currentBooks, setCurrentBooks] = useState(sorted);
     const [currentCategory, setCurrentCategory] = useState(0);
@@ -25,27 +24,27 @@ const Filter = ({ items, setItems }) => {
         totalCategory += item.book_count
     })
     const onChangeCategory = (e) => {
-        
+
         const category_id = +e.target.options[e.target.selectedIndex].value;
-        if(category_id === 0) {
+        if (category_id === 0) {
             setActive(false);
             setItems(sorted);
-            
-        }else{
+
+        } else {
             setActive(true)
             const result = sorted.filter(item => item.book_categoryId === category_id)
             setItems(result)
             setCurrentBooks(result)
         }
-        
-        
+
+
         setCurrentCategory(category_id)
     }
     const onChangeAuthor = (e) => {
         const authorName = e.target.options[e.target.selectedIndex].value;
         console.log(authorName)
         if (authorName === '0') {
-            
+
             const result = sorted.filter(item => item.book_categoryId === currentCategory)
             setItems(result)
             setCurrentBooks(result)
@@ -53,7 +52,7 @@ const Filter = ({ items, setItems }) => {
         } else {
             const result = currentBooks.filter(item => item.book_author === authorName)
             setItems(result)
-            
+
             setCurrentAuthor(authorName)
         }
 
@@ -76,12 +75,12 @@ const Filter = ({ items, setItems }) => {
                         }
                     </select>
                 </div>
-            
+
             </div>
             {
-                active ?  <div>В категории книг: {totalCategory}</div> : ''
+                active ? <div>В категории книг: {totalCategory}</div> : ''
             }
-           
+
         </div>
 
     )

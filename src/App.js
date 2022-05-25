@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from './store/actions/books'
+import bookService from './service/book-service';
+import { useEffect } from 'react';
+import Header from './components/headers/Header';
+import Home from './page/Home';
+import Crud from './page/Crud';
+import WishList from './page/WishList';
+import { Routes, Route } from "react-router-dom";
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+      bookService.getAll().then(resolve => dispatch(actions.fetchBooks(resolve)))
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/crud" element={<Crud/>}/>
+        <Route path="/wishlist" element={<WishList/>}/>
+      </Routes>
     </div>
+    
   );
 }
 

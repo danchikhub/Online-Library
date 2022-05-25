@@ -1,0 +1,20 @@
+.crud-title__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 0 0;
+    font-family: 'Nunito', sans-serif;
+    align-items: center;
+}
+.crud-title__button {
+    background-color: #54C052;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+.create-title {
+    text-align: center;
+    margin: 15px 0;
+}
